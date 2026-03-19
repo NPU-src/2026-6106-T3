@@ -1,20 +1,14 @@
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=chrome">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>SC6106</title>
+    <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='styles.css')}}">
 </head>
-
-
 <body>
     <div class="container">
-        <h2>Welcome to SC6106</h2>
-        <p>Please enter your username.</p>
+        <h2>Welcome to SC6106 Web3 Application</h2>
+        <p>Please enter your user name</p>
         <form action="/main" method="post">
-            <input type="text" name="q">
-            <input type="submit" value="enter">
-            link
-        </form>
+            <input type = "text" name="q">
+            <input type = "submit" value="Enter">
+        </form> 
     </div>
 </body>
