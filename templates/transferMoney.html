@@ -10,13 +10,17 @@
         <input type="text" id="payee" placeholder="Enter Payee Address">
         <input type="text" id="amount" placeholder="Enter Payer Amount">
         <button class="btn" onclick="transfer()">Transfer</button>
-
+		<button class="btn" onclick="transaction()">View Transaction</button>
         <form action="/main" method="post">
             <input type="submit" value="main">
         </form>
+		<p id="view_payer"></p >
+		<p id="view_payee"></p >
+		<p id="view_amount"></p >
+
         <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
         <script>
-            const contractAddress = "0x456e7343bdf19d4b313852edc4677ace44f64514"
+            const contractAddress = "0x96972d5ff2b045a265b131c4c0c08fd2cd0407d0"
             const contractABI = [
 	{
 		"inputs": [],
@@ -77,12 +81,15 @@
                 await contract.methods.weixin(payer,payee,amount).send({from:accounts[0]});
             }
             
-            // async function transaction() {
-            // const result = await contract.methods.transaction().call();
-            // document.getElementById('view_payer').innerText = "Payer: " + result[0];
-            // document.getElementById('view_payee').innerText = "Payee: " + result[1];
-            // document.getElementById('view_amount').innerText = "Amount: " + result[2];
-
+            async function transaction() {
+            const result = await contract.methods.checkTransaction().call();
+            // const payer = document.getElementById('payer').value;
+            // const payee = document.getElementById("payee").value;
+            // const amount = document.getElementById("amount").value;
+			document.getElementById("view_payer").innerText="Payer is" + result[0];	
+			document.getElementById("view_payee").innerText="Payee is" + result[1];
+			document.getElementById("view_amount").innerText="Amount is" + result[2];	
+	}
         </script>
     </div>
 
