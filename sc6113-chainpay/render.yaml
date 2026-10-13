@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: chainpay-sc6113
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn 'app:create_app()' --bind 0.0.0.0:$PORT --workers 2 --threads 4 --timeout 60
+    healthCheckPath: /health
+    envVars:
+      - key: NETWORK
+        value: sepolia
+      - key: RPC_URL
+        value: https://ethereum-sepolia-rpc.publicnode.com

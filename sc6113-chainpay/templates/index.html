@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChainPay · SC6113 Financial DApp</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <script defer src="{{ url_for('static', filename='vendor/ethers.umd.min.js') }}"></script>
+  <script type="module" src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+<main>
+  <header><div><p class="eyebrow">SC6113 · FINANCIAL DAPP</p><h1>ChainPay</h1><p class="subtitle">Send test ETH. View your on-chain receipts.</p></div><span class="badge" id="network">Loading…</span></header>
+  <p class="notice" id="notice">This application uses test funds only.</p>
+  <section class="panel wallet-panel"><div><h2>Your account</h2><p id="account" class="mono">Not connected</p><p id="balance" class="muted">Connect a wallet to get started.</p></div><div class="wallet-buttons"><button id="connect">Connect MetaMask</button></div></section>
+  <p id="error" class="error" role="alert" hidden></p>
+  <div class="columns">
+    <section class="panel"><h2>Transfer ETH</h2><form id="transfer-form" novalidate>
+      <label for="recipient">Recipient address</label><input id="recipient" type="text" placeholder="0x…" autocomplete="off" spellcheck="false" required>
+      <label for="amount">Amount in ETH</label><input id="amount" type="text" inputmode="decimal" placeholder="e.g. 0.01" autocomplete="off" required>
+      <label for="memo">Memo <span>Optional · public on-chain</span></label><input id="memo" type="text" placeholder="e.g. Shared course materials" autocomplete="off"><p class="hint" id="memo-counter">0 / 140 UTF-8 bytes</p>
+      <p class="hint">Check the recipient carefully. Gas is paid separately.</p><button id="send" type="submit" class="full" disabled>Send test ETH</button>
+    </form></section>
+    <section class="panel"><h2>Transaction status</h2><p id="status" class="status" role="status">No transaction submitted.</p><dl><dt>Network</dt><dd id="network-detail">—</dd><dt>Contract</dt><dd><a id="contract" class="mono">Not deployed</a></dd><dt>Transaction hash</dt><dd><a id="hash" class="mono">—</a></dd><dt>Confirmation</dt><dd id="confirmation">—</dd></dl><button id="check" class="secondary" hidden>Check confirmation again</button></section>
+  </div>
+  <section class="panel history-panel"><div class="section-head"><h2>Transaction history</h2><button id="refresh" class="secondary">Refresh</button></div><p id="history-message" class="muted">Connect an account to see sent and received payments.</p><div class="table-wrap"><table id="history-table" hidden><thead><tr><th>Receipt</th><th>Direction / counterparty</th><th>Amount</th><th>Memo</th><th>Status</th></tr></thead><tbody id="history-body"></tbody></table></div><div class="pagination"><span id="page-label"></span><div><button id="prev" class="secondary" disabled>Newer</button><button id="next" class="secondary" disabled>Older</button></div></div></section>
+  <details class="panel"><summary>Sepolia deployment and wallet setup</summary><p>MetaMask signs payments; Flask reads the blockchain. Your private keys and recovery phrase stay in your wallet.</p><p id="setup-info"></p><div class="setup-actions"><button id="switch" class="secondary">Switch wallet network</button><button id="deploy" class="secondary">Deploy ChainPay contract</button></div><p id="deployment-status" class="mono" role="status"></p><label for="existing-contract">Existing ChainPay address</label><input id="existing-contract" type="text" placeholder="0x…" autocomplete="off" spellcheck="false"><button id="use-contract" class="secondary">Use this contract</button><p class="hint">Contract deployment requires Sepolia ETH. The selected address is saved in this browser.</p></details>
+  <footer>Solidity + MetaMask + Flask · Test networks only · Never put personal information in a payment memo.</footer>
+</main>
+</body>
+</html>
