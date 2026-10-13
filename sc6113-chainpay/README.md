@@ -1,5 +1,7 @@
 # ChainPay
 
+Live application: https://chainpay-sc6113.onrender.com
+
 ChainPay is an ETH transfer application for the Sepolia test network. It records a receipt for each payment and displays sent and received payments for the connected account.
 
 ## Submission files
@@ -36,7 +38,7 @@ The backend checks the selected contract's bytecode before reading payments. The
 
 ## Deploy on Render
 
-Create a Python Web Service from this directory, or use the included Render Blueprint. Select the Free instance type.
+The deployed service uses branch `codex/chainpay-submission` and root directory `sc6113-chainpay` in the GitHub repository. To deploy the extracted submission as a new repository, leave Root Directory empty and remove `branch` and `rootDir` from `render.yaml`. Select the Free instance type.
 
 Build command: `pip install -r requirements.txt`
 

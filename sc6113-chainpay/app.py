@@ -29,7 +29,7 @@ class RPCClient:
         payload = [{"jsonrpc": "2.0", "id": i, "method": method, "params": params}
                    for i, (method, params) in enumerate(calls)]
         req = Request(self.url, json.dumps(payload).encode(),
-                      headers={"Content-Type": "application/json"}, method="POST")
+                      headers={"Content-Type": "application/json", "User-Agent": "ChainPay/1.0"}, method="POST")
         try:
             with urlopen(req, timeout=12) as response:
                 data = json.load(response)
